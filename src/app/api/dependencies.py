@@ -1,10 +1,10 @@
 from fastapi import Depends
 
 from app.repositories.user_repository_contract import UserRepositoryContract
-from app.repositories.fake_user_repository import FakeUserRepository
+from app.repositories.user_repository import UserRepository
 from app.services.user_service import UserService
 
-_user_repository = FakeUserRepository()
+_user_repository = UserRepository()
 
 
 def get_user_repository() -> UserRepositoryContract:
