@@ -1,10 +1,18 @@
-from app.models.user import UserCreate
+from app.models.user import UserCreate, UserResponse
+from app.repositories.user_repository import UserRepository
 
 class UserService:
 
-    def create_user(self, user: UserCreate):
-        # aqui entraria regra real (validação, integração, etc.)
+    def __init__(self, user_repository: UserRepository):
+        self.user_repository = user_repository
+
+    def create_user(self, user: UserCreate) -> dict:
+        created_user = self.user_repository.add(user)
+
         return {
-            "message": f"Usuário {user.name} criado com sucesso!",
-            "data": user
-            } 
+            "message": "User created successfully",
+            "data": created_user
+        }
+    
+    def list_users(self) -> list[UserResponse]:
+        return self.user_repository.list_all()
