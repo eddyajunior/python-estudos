@@ -19,3 +19,17 @@ class UserService:
     
     def get_user_by_id(self, user_id: int) -> UserResponse | None:
         return self.user_repository.get_by_id(user_id)
+    
+    def delete_user(self, user_id: int) -> bool:
+        return self.user_repository.delete(user_id)
+
+        # if not deleted:
+        #     return {
+        #         "message": "Usuário não encontrado",
+        #         "success": False
+        #     }
+        
+        # return {
+        #     "message": "Usuário deletado com sucesso",
+        #     "success": True
+        # }

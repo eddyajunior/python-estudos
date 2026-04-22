@@ -24,3 +24,10 @@ class UserRepository:
             if user.id == user_id:
                 return user
         return None
+    
+    def delete(self, user_id: int) -> bool:
+        for index, user in enumerate(self._users):
+            if user.id == user_id:
+                del self._users[index]
+                return True
+        return False

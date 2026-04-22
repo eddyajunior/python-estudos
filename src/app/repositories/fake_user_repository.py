@@ -28,3 +28,6 @@ class FakeUserRepository:
                 age=30
             )
         return None 
+    
+    def delete(self, user_id: int) -> bool:
+        return user_id == 999

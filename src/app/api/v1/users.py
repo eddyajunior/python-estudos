@@ -32,3 +32,15 @@ def get_user_by_id(
         raise HTTPException(status_code=404, detail="User not found")
     
     return user
+
+@router.delete("/{user_id}")
+def delete_user(
+    user_id: int, 
+    user_service: UserService = Depends(get_user_service)
+):
+    deleted = user_service.delete_user(user_id)
+
+    if not deleted:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    return {"message": "User deleted successfully"}
