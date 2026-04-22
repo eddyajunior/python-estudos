@@ -1,8 +1,10 @@
 from app.models.user import UserCreate, UserResponse
 
 class UserRepository:
-    _users: list[UserResponse] = []
-    _next_id: int = 1
+    def __init__(self):
+        self._users: list[UserResponse] = []
+        self._next_id: int = 1
+
 
     def add(self, user: UserCreate) -> UserResponse:
         new_user = UserResponse(
