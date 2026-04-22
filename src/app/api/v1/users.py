@@ -6,17 +6,14 @@ from app.services.user_service import UserService
 
 router = APIRouter(prefix="/api/v1/users", tags=["users"])
 
-user_repository = UserRepository()
 
 @router.post("/")
 def create_user(
-    user: UserCreate, 
-    user_service: UserService = Depends(get_user_service)
+    user: UserCreate, user_service: UserService = Depends(get_user_service)
 ):
     return user_service.create_user(user)
 
+
 @router.get("/")
-def list_users(
-    user_service: UserService = Depends(get_user_service)
-):
+def list_users(user_service: UserService = Depends(get_user_service)):
     return user_service.list_users()
